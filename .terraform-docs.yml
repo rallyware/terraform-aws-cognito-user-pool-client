@@ -17,6 +17,7 @@ output:
   mode: replace
   template: |-
     # terraform-module-template
+    Terraform module to priovision and manage `Cognito` client.
 
     <!-- BEGIN_TF_DOCS -->
     {{ .Content }}
