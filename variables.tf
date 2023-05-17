@@ -56,6 +56,7 @@ variable "prevent_user_existence_errors" {
   default     = "ENABLED"
   description = "Choose which errors and responses are returned by Cognito APIs during authentication, account confirmation, and password recovery when the user does not exist in the user pool. Possible values: ENABLED, LEGACY"
 }
+
 variable "access_token_validity" {
   type        = number
   default     = 1
