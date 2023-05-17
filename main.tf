@@ -16,4 +16,7 @@ resource "aws_cognito_user_pool_client" "default" {
   logout_urls                          = var.logout_urls
   supported_identity_providers         = var.supported_identity_providers
   prevent_user_existence_errors        = var.prevent_user_existence_errors
+  access_token_validity                = var.access_token_validity
+  id_token_validity                    = var.id_token_validity
+  refresh_token_validity               = var.refresh_token_validity 
 }
