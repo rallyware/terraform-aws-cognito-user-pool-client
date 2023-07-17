@@ -127,7 +127,7 @@ module "cognito_client" {
 | <a name="input_supported_identity_providers"></a> [supported\_identity\_providers](#input\_supported\_identity\_providers) | List of provider names for the identity providers that are supported on this client. | `list(string)` | `[]` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | Additional tags (e.g. `{'BusinessUnit': 'XYZ'}`).<br>Neither the tag keys nor the tag values will be modified by this module. | `map(string)` | `{}` | no |
 | <a name="input_tenant"></a> [tenant](#input\_tenant) | ID element \_(Rarely used, not included by default)\_. A customer identifier, indicating who this instance of a resource is for | `string` | `null` | no |
-| <a name="input_token_ttl"></a> [token\_ttl](#input\_token\_ttl) | The token TTL. Allowed values are number of time units (s, m, h, d). | <pre>object({<br>    id      = optional(string, "1h")<br>    refresh = optional(string, "1h")<br>    access  = optional(string, "1h")<br>  })</pre> | `{}` | no |
+| <a name="input_token_ttl"></a> [token\_ttl](#input\_token\_ttl) | The token TTL. Allowed values are number of time units (s, m, h, d). | <pre>object({<br>    id      = optional(string, "1h")<br>    refresh = optional(string, "30d")<br>    access  = optional(string, "1h")<br>  })</pre> | `{}` | no |
 ## Outputs
 
 | Name | Description |
