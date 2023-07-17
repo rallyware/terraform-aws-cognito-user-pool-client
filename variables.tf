@@ -57,20 +57,12 @@ variable "prevent_user_existence_errors" {
   description = "Choose which errors and responses are returned by Cognito APIs during authentication, account confirmation, and password recovery when the user does not exist in the user pool. Possible values: ENABLED, LEGACY"
 }
 
-variable "access_token_validity" {
-  type        = number
-  default     = 1
-  description = "Time unit in for the value in access_token_validity, defaults to hours"
-}
-
-variable "id_token_validity" {
-  type        = number
-  default     = 1
-  description = "Time unit in for the value in id_token_validity, defaults to hours."
-}
-
-variable "refresh_token_validity" {
-  type        = number
-  default     = 1
-  description = "Time unit in for the value in refresh_token_validity, defaults to days"
+variable "token_ttl" {
+  type = object({
+    id      = optional(string, "1h")
+    refresh = optional(string, "30d")
+    access  = optional(string, "1h")
+  })
+  default     = {}
+  description = "The token TTL. Allowed values are number of time units (s, m, h, d)."
 }

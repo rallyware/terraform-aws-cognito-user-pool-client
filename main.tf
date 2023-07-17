@@ -1,5 +1,12 @@
 locals {
   enabled = module.this.enabled
+
+  time_units = {
+    s = "seconds"
+    m = "minutes"
+    h = "hours"
+    d = "days"
+  }
 }
 
 resource "aws_cognito_user_pool_client" "default" {
@@ -16,7 +23,13 @@ resource "aws_cognito_user_pool_client" "default" {
   logout_urls                          = var.logout_urls
   supported_identity_providers         = var.supported_identity_providers
   prevent_user_existence_errors        = var.prevent_user_existence_errors
-  access_token_validity                = var.access_token_validity
-  id_token_validity                    = var.id_token_validity
-  refresh_token_validity               = var.refresh_token_validity
+  access_token_validity                = regex("(\\d+)([smhd])", var.token_ttl["access"])[0]
+  id_token_validity                    = regex("(\\d+)([smhd])", var.token_ttl["id"])[0]
+  refresh_token_validity               = regex("(\\d+)([smhd])", var.token_ttl["refresh"])[0]
+
+  token_validity_units {
+    access_token  = local.time_units[regex("(\\d+)([smhd])", var.token_ttl["access"])[1]]
+    id_token      = local.time_units[regex("(\\d+)([smhd])", var.token_ttl["id"])[1]]
+    refresh_token = local.time_units[regex("(\\d+)([smhd])", var.token_ttl["refresh"])[1]]
+  }
 }
